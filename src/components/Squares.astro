@@ -24,6 +24,7 @@ const { density } = Astro.props;
     height: inherit;
     overflow: hidden;
     margin: 0;
+    padding: 0;
   }
 
   .squares li {
@@ -32,7 +33,7 @@ const { density } = Astro.props;
     list-style: none;
     width: 20px;
     height: 20px;
-    background: rgba(255, 255, 255, 0.2);
+    background: var(--squares);
     animation: animate 25s linear infinite;
     bottom: -150px;
   }
