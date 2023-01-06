@@ -1,0 +1,27 @@
+---
+export interface SkillType {
+  name: string;
+  label: string;
+  relevance: "low" | "medium" | "high";
+}
+
+export interface Props {
+  items: SkillType[];
+}
+
+const { items } = Astro.props;
+---
+
+<section>
+  <h1>Skills</h1>
+  <ul>
+    {
+      items.map((item) => (
+        <li title={item.label}>
+          <span>{item.name}</span>
+          <span>{item.relevance}</span>
+        </li>
+      ))
+    }
+  </ul>
+</section>
