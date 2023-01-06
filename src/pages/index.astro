@@ -1,6 +1,13 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Squares from "../components/Squares.astro";
+import { TypingEffect } from "../components/TypingEffect";
+// import Callout from "../components/Callout.astro";
+// import Skills from "../components/Skills.astro";
+
+// import { Content as SkillsMd } from "../content/Skills.mdx";
+
+const text = ["Software Engineer", "Frontend Expert"];
 ---
 
 <Layout
@@ -12,7 +19,18 @@ import Squares from "../components/Squares.astro";
     <h1 class="title">
       Hi, I am <span class="highlight">Lucas Arcanjo</span>
     </h1>
+
+    <TypingEffect client:idle textList={text} />
   </main>
+  <!-- <Callout>
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora ducimus
+    iste placeat ullam fuga asperiores architecto reprehenderit, mollitia
+    explicabo. Aliquam, quae nulla. Doloremque tempora cupiditate corporis.
+    Laborum deleniti suscipit laboriosam?
+  </Callout> -->
+
+  <!-- <Skills items={skills} /> -->
+  <!-- <SkillsMd /> -->
 </Layout>
 
 <style>
@@ -30,14 +48,6 @@ import Squares from "../components/Squares.astro";
     font-weight: 800;
     margin: 0;
   }
-
-  /* .text-gradient {
-		background-image: var(--accent-gradient);
-		-webkit-background-clip: text;
-		-webkit-text-fill-color: transparent;
-		background-size: 400%;
-		background-position: 0%;
-	} */
 
   .title,
   .description {
