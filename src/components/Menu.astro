@@ -1,0 +1,119 @@
+---
+import menuIcon from "../icons/menu.svg";
+
+// TODO: fix the overflow issue when the menu is opened
+// TODO: add animation to the hamburger menu icon (X)
+// TODO: add animation to the menu items and padding according with each item
+---
+
+<menu-button>
+  <button type="button" class="button">
+    <img class="icon" src={menuIcon} />
+  </button>
+</menu-button>
+
+<div class="menu">
+  <ul>
+    <li>Home</li>
+    <li>About</li>
+    <li>Links</li>
+  </ul>
+</div>
+
+<style is:global>
+  main {
+    transition: transform 0.5s ease-in-out;
+    transform-origin: left top;
+    /* border: 5px solid red; */
+  }
+
+  .is-open {
+    transform: rotate(-30deg);
+  }
+</style>
+
+<style lang="scss">
+  @use "sass:math";
+
+  .button {
+    $base-size: 150px;
+
+    background-color: #f68f11;
+    color: white;
+    position: fixed;
+    top: -#{math.div($base-size, 2)};
+    left: -#{math.div($base-size, 2)};
+    border-radius: 50%;
+    width: $base-size;
+    height: $base-size;
+    cursor: pointer;
+    border: 0;
+
+    &:hover {
+      background-color: lighten(#f68f11, 5%);
+    }
+  }
+
+  .icon {
+    $spacing: 16px;
+
+    position: fixed;
+    top: $spacing;
+    left: $spacing;
+  }
+
+  .menu {
+    display: none;
+    position: fixed;
+    bottom: 30px;
+    left: 30px;
+
+    &--open {
+      display: block;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      gap: 32px;
+      flex-direction: column;
+
+      font-size: 24px;
+    }
+
+    // @for $i from 1 through 3 {
+    //   ul:nth-child(3n + #{$i}) {
+    //     padding-left: #{$i * 16}px;
+    //   }
+    // }
+  }
+</style>
+
+<script>
+  class MenuButton extends HTMLElement {
+    constructor() {
+      super();
+      let isOpen = false;
+
+      const mainContainer = document.querySelector("main");
+      const menu = document.querySelector(".menu");
+      const button = this.querySelector("button");
+
+      button?.addEventListener("click", () => {
+        isOpen = !isOpen;
+
+        if (isOpen) {
+          mainContainer?.classList.add("is-open");
+          menu?.classList.add("menu--open");
+        } else {
+          mainContainer?.classList.remove("is-open");
+          menu?.classList.remove("menu--open");
+        }
+      });
+    }
+  }
+
+  customElements.define("menu-button", MenuButton);
+</script>
