@@ -2,6 +2,7 @@
 import Layout from "../layouts/Layout.astro";
 import Squares from "../components/Squares.astro";
 import { TypingEffect } from "../components/TypingEffect";
+import Menu from "../components/Menu.astro";
 // import Callout from "../components/Callout.astro";
 // import Skills from "../components/Skills.astro";
 
@@ -22,6 +23,8 @@ const text = ["Software Engineer", "Frontend Expert"];
 
     <TypingEffect client:idle textList={text} />
   </main>
+  <Menu />
+
   <!-- <Callout>
     Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora ducimus
     iste placeat ullam fuga asperiores architecto reprehenderit, mollitia
