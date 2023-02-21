@@ -4,16 +4,23 @@ import menuIcon from "../icons/menu.svg";
 // TODO: fix the overflow issue when the menu is opened
 // TODO: add animation to the hamburger menu icon (X)
 // TODO: add animation to the menu items and padding according with each item
+// accessible menu items: https://accessibleit.disability.illinois.edu/courses/aria-intro/slide30.html
 ---
 
 <menu-button>
-  <button type="button" class="button">
-    <img class="icon" src={menuIcon} />
+  <button
+    type="button"
+    class="button"
+    aria-haspopup="true"
+    aria-controls="menu-container"
+    aria-expanded="false"
+  >
+    <img class="icon" src={menuIcon} alt="Menu Hamburger Icon" />
   </button>
 </menu-button>
 
 <div class="menu">
-  <ul>
+  <ul id="menu-container" role="menu">
     <li>Home</li>
     <li>About</li>
     <li>Links</li>
@@ -105,9 +112,11 @@ import menuIcon from "../icons/menu.svg";
         isOpen = !isOpen;
 
         if (isOpen) {
+          button.setAttribute("aria-expanded", "true");
           mainContainer?.classList.add("is-open");
           menu?.classList.add("menu--open");
         } else {
+          button.setAttribute("aria-expanded", "false");
           mainContainer?.classList.remove("is-open");
           menu?.classList.remove("menu--open");
         }
