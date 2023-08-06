@@ -8,7 +8,12 @@ import Menu from "../components/Menu.astro";
 
 // import { Content as SkillsMd } from "../content/Skills.mdx";
 
-const text = ["Software Engineer", "Frontend Expert"];
+const dynamicText = [
+  "Software Engineer",
+  "Frontend enthusiast",
+  "Software Consultant",
+  "Open Source Contributor",
+];
 ---
 
 <Layout
@@ -16,12 +21,60 @@ const text = ["Software Engineer", "Frontend Expert"];
   description="My personal portfolio. I am a Software Engineer focused on front-end and specialized in React and Typescript."
 >
   <main>
-    <Squares density="cosy" />
-    <h1 class="title">
-      Hi, I am <span class="highlight">Lucas Arcanjo</span>
-    </h1>
+    <div class="container">
+      <section class="greetings-container">
+        <Squares density="cosy" />
+        <h1 class="title">
+          Hi, I am <span class="highlight">Lucas Arcanjo</span>
+        </h1>
 
-    <TypingEffect client:idle textList={text} />
+        <TypingEffect client:idle textList={dynamicText} />
+      </section>
+
+      <section>
+        <h2>My skills</h2>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora
+          ducimus iste placeat ullam fuga asperiores architecto reprehenderit,
+          mollitia explicabo. Aliquam, quae nulla. Doloremque tempora cupiditate
+          corporis. Laborum deleniti suscipit laboriosam?
+        </p>
+      </section>
+
+      <section>
+        <h2>My projects</h2>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora
+          ducimus iste placeat ullam fuga asperiores architecto reprehenderit,
+          mollitia explicabo. Aliquam, quae nulla. Doloremque tempora cupiditate
+          corporis. Laborum deleniti suscipit laboriosam?
+        </p>
+      </section>
+
+      <section>
+        <h2>My blog</h2>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora
+          ducimus iste placeat ullam fuga asperiores architecto reprehenderit,
+          mollitia explicabo. Aliquam, quae nulla. Doloremque tempora cupiditate
+          corporis. Laborum deleniti suscipit laboriosam?
+        </p>
+      </section>
+
+      <section>
+        <h2>My contact</h2>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora
+          ducimus iste placeat ullam fuga asperiores architecto reprehenderit,
+          mollitia explicabo. Aliquam, quae nulla. Doloremque tempora cupiditate
+          corporis. Laborum deleniti suscipit laboriosam?
+        </p>
+      </section>
+
+      <footer>
+        <p>Made with ❤️</p>
+      </footer>
+    </div>
   </main>
   <Menu />
 
@@ -38,18 +91,30 @@ const text = ["Software Engineer", "Frontend Expert"];
 
 <style>
   main {
-    height: 100vh;
-    padding: 4rem 0;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  }
+
+  .container {
+    height: auto;
+    /* height: 100vh; */
+    overflow-y: auto;
   }
 
   h1 {
     font-size: 3rem;
     font-weight: 800;
     margin: 0;
+  }
+
+  .greetings-container {
+    height: 100vh;
+    padding: 4rem 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
   }
 
   .title,
