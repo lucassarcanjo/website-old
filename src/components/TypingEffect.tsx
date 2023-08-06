@@ -16,7 +16,7 @@ function sleep(ms: number) {
 export const TypingEffect = ({ textList, options }: Props) => {
   const [currentText, setCurrentText] = useState("");
 
-  const typeSpeed = options?.typeSpeed || 100;
+  const typeSpeed = options?.typeSpeed || 70;
   const wordIntervalSpeed = options?.wordIntervalSpeed || 1000;
 
   const type = async () => {
@@ -45,5 +45,5 @@ export const TypingEffect = ({ textList, options }: Props) => {
     type();
   }, []);
 
-  return <span>{currentText}</span>;
+  return <span style={{ minHeight: "18px" }}>{currentText}</span>;
 };
