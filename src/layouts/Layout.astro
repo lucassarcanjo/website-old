@@ -24,7 +24,8 @@ const domain = import.meta.env.PUBLIC_DOMAIN;
   </head>
   <body>
     <slot />
-    <script defer src="/_vercel/insights/script.js"></script>
+
+    {import.meta.env.PROD && <script defer src="/_vercel/insights/script.js" />}
   </body>
 </html>
 
@@ -64,6 +65,7 @@ const domain = import.meta.env.PUBLIC_DOMAIN;
   body {
     color: var(--text);
     background: var(--background);
+    overflow: hidden;
   }
 
   * {
