@@ -13,6 +13,7 @@
   "dependencies": {
     "@astrojs/mdx": "^0.11.6",
     "@astrojs/react": "^2.2.1",
+    "@fontsource/inter": "^5.0.8",
     "@types/react": "^18.0.25",
     "@types/react-dom": "^18.0.9",
     "@vercel/analytics": "^1.0.1",
