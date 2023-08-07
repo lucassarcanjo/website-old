@@ -2,7 +2,8 @@
 import Layout from "../layouts/Layout.astro";
 import Squares from "../components/Squares.astro";
 import { TypingEffect } from "../components/TypingEffect";
-import Menu from "../components/Menu.astro";
+import MenuButton from "../components/Menu/MenuButton.astro";
+import MenuContent from "../components/Menu/MenuContent.astro";
 // import Callout from "../components/Callout.astro";
 // import Skills from "../components/Skills.astro";
 
@@ -30,7 +31,7 @@ const dynamicText = [
 
         <TypingEffect client:idle textList={dynamicText} />
       </section>
-
+      <!-- 
       <section>
         <h2>My skills</h2>
         <p>
@@ -73,10 +74,11 @@ const dynamicText = [
 
       <footer>
         <p>Made with ❤️</p>
-      </footer>
+      </footer> -->
     </div>
+    <MenuContent />
   </main>
-  <Menu />
+  <MenuButton />
 
   <!-- <Callout>
     Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora ducimus
