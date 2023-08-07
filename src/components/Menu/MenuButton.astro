@@ -1,9 +1,4 @@
 ---
-import menuIcon from "../icons/menu.svg";
-
-// TODO: fix the overflow issue when the menu is opened
-// TODO: add animation to the hamburger menu icon (X)
-// TODO: add animation to the menu items and padding according with each item
 // accessible menu items: https://accessibleit.disability.illinois.edu/courses/aria-intro/slide30.html
 ---
 
@@ -15,23 +10,18 @@ import menuIcon from "../icons/menu.svg";
     aria-controls="menu-container"
     aria-expanded="false"
   >
-    <img class="icon" src={menuIcon} alt="Menu Hamburger Icon" />
+    <div class="icon">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
   </button>
 </menu-button>
-
-<div class="menu">
-  <ul id="menu-container" role="menu">
-    <li>Home</li>
-    <li>About</li>
-    <li>Links</li>
-  </ul>
-</div>
 
 <style is:global>
   main {
     transition: transform 0.5s ease-in-out;
     transform-origin: left top;
-    /* border: 5px solid red; */
   }
 
   .is-open {
@@ -62,39 +52,49 @@ import menuIcon from "../icons/menu.svg";
   }
 
   .icon {
-    $spacing: 16px;
-
     position: fixed;
-    top: $spacing;
-    left: $spacing;
+    top: 12px;
+    left: 12px;
+    display: flex;
+    flex-direction: column;
+    width: 35px;
+    cursor: pointer;
+
+    span {
+      background: #000;
+      border-radius: 10px;
+      height: 3.5px;
+      margin: 3.5px 0;
+      transition: 0.4s cubic-bezier(0.68, -0.6, 0.32, 1.6);
+    }
+
+    span:nth-of-type(1) {
+      width: 50%;
+    }
+
+    span:nth-of-type(2) {
+      width: 100%;
+    }
+
+    span:nth-of-type(3) {
+      width: 75%;
+    }
   }
 
-  .menu {
-    display: none;
-    position: fixed;
-    bottom: 30px;
-    left: 30px;
+  .button[aria-expanded="true"] span:nth-of-type(1) {
+    transform-origin: bottom;
+    transform: rotatez(45deg) translate(4px, 0px);
+  }
 
-    &--open {
-      display: block;
-    }
+  .button[aria-expanded="true"] span:nth-of-type(2) {
+    transform-origin: top;
+    transform: rotatez(-45deg);
+  }
 
-    ul {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-      display: flex;
-      gap: 32px;
-      flex-direction: column;
-
-      font-size: 24px;
-    }
-
-    // @for $i from 1 through 3 {
-    //   ul:nth-child(3n + #{$i}) {
-    //     padding-left: #{$i * 16}px;
-    //   }
-    // }
+  .button[aria-expanded="true"] span:nth-of-type(3) {
+    transform-origin: bottom;
+    width: 50%;
+    transform: translate(15px, -5.5px) rotatez(45deg);
   }
 </style>
 
@@ -105,7 +105,6 @@ import menuIcon from "../icons/menu.svg";
       let isOpen = false;
 
       const mainContainer = document.querySelector("main");
-      const menu = document.querySelector(".menu");
       const button = this.querySelector("button");
 
       button?.addEventListener("click", () => {
@@ -114,11 +113,9 @@ import menuIcon from "../icons/menu.svg";
         if (isOpen) {
           button.setAttribute("aria-expanded", "true");
           mainContainer?.classList.add("is-open");
-          menu?.classList.add("menu--open");
         } else {
           button.setAttribute("aria-expanded", "false");
           mainContainer?.classList.remove("is-open");
-          menu?.classList.remove("menu--open");
         }
       });
     }
